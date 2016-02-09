@@ -1,6 +1,6 @@
 {
   "name": "karma-jasmine-spy-when",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Allows for easier conditional return values on jasmine spies",
   "main": "index.js",
   "files": [

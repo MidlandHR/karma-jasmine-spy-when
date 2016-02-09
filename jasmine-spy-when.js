@@ -23,6 +23,8 @@
         _this.argumentsListValue[argumentIndex] = value;
 
         _this.callFake(newCallFake);
+
+        return _this;
       }
     }
   }
