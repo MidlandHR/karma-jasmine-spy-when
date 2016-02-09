@@ -20,10 +20,7 @@
 
     return {
       returnValue: function(value) {
-        console.log(argumentIndex, _this.argumentsListValue);
         _this.argumentsListValue[argumentIndex] = value;
-
-        console.log(2);
 
         _this.callFake(newCallFake);
       }
