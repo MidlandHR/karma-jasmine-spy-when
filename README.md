@@ -11,7 +11,7 @@ $ npm install karma-jasmine-spy-when --save-dev
 ## Usage
 
 ```js
-var mySpy = jasmine.createSpy(),
+  var mySpy = jasmine.createSpy(),
     myObj = { h: 1 };
 
   mySpy.and.whenCalledWith('hello').returnValue('its me');
@@ -23,4 +23,18 @@ var mySpy = jasmine.createSpy(),
   console.log(mySpy(1));            // returns 'dave'
   console.log(mySpy(myObj));        // returns 'doh'
   console.log(mySpy());             // returns 'nothing passed'
+```
+
+## Defining a default return value
+
+```js
+  var mySpy = jasmine.createSpy('mySpy');
+
+  mySpy.and.whenCalled().returnDefault('This is default');
+  mySpy.and.whenCalledWith().returnValue('This is nothing passed');
+  mySpy.and.whenCalledWith('test').returnValue('This is Test');
+
+  console.log(mySpy('test'));
+  console.log(mySpy());
+  console.log(mySpy('this is not in the list'));
 ```
