@@ -12,10 +12,11 @@
   };
 
   jasmine.SpyStrategy.prototype.whenCalled = function() {
+    this.argumentsList = this.argumentsList || [];
+    this.argumentsListValue = this.argumentsListValue || [];
     this.defaultValue = this.defaultValue || null;
 
     var _this = this;
-
 
     return {
       returnDefault: function(value) {
@@ -33,7 +34,7 @@
   jasmine.SpyStrategy.prototype.whenCalledWith = function(argumentValue) {
     this.argumentsList = this.argumentsList || [];
     this.argumentsListValue = this.argumentsListValue || [];
-
+    this.defaultValue = this.defaultValue || null;
 
     var _this = this,
         argumentIndex = this.argumentsList.push(argumentValue) - 1;
