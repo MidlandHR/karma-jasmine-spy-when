@@ -34,7 +34,6 @@
   jasmine.SpyStrategy.prototype.whenCalledWith = function(argumentValue) {
     this.argumentsList = this.argumentsList || [];
     this.argumentsListValue = this.argumentsListValue || [];
-    this.defaultValue = this.defaultValue || null;
 
     var _this = this,
         argumentIndex = this.argumentsList.push(argumentValue) - 1;
