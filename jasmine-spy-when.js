@@ -2,18 +2,17 @@
   "use strict";
 
   var newCallFake = function(myArgument) {
-    var argumentListIndex = this.argumentsList.indexOf(myArgument);
+    var hasMockedValue = this.argumentsMap.has(myArgument);
 
-    if(argumentListIndex === -1) {
+    if(!hasMockedValue) {
       return this.defaultValue;
     }
 
-    return this.argumentsListValue[argumentListIndex];
+    return this.argumentsMap.get(myArgument);
   };
 
   jasmine.SpyStrategy.prototype.whenCalled = function() {
-    this.argumentsList = this.argumentsList || [];
-    this.argumentsListValue = this.argumentsListValue || [];
+    this.argumentsMap = this.argumentsMap || new Map();
     this.defaultValue = this.defaultValue || null;
 
     var _this = this;
@@ -32,15 +31,13 @@
   };
 
   jasmine.SpyStrategy.prototype.whenCalledWith = function(argumentValue) {
-    this.argumentsList = this.argumentsList || [];
-    this.argumentsListValue = this.argumentsListValue || [];
+    this.argumentsMap = this.argumentsMap || new Map();
 
-    var _this = this,
-        argumentIndex = this.argumentsList.push(argumentValue) - 1;
+    var _this = this;
 
     return {
       returnValue: function(value) {
-        _this.argumentsListValue[argumentIndex] = value;
+        _this.argumentsMap.set(argumentValue, value)
 
         _this.callFake(function () {
           return newCallFake.apply(_this, arguments);
